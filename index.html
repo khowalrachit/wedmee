@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedmee - Beautiful Wedding Cards</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f9f3f3 0%, #f5e8e8 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #d4a86a;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #e8c4a4;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #d4a86a;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), 
+                        url('https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            scroll-snap-align: start;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin-bottom: 2rem;
+            color: #666;
+        }
+
+        .cta-button {
+            padding: 1rem 2rem;
+            background: #d4a86a;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(212, 168, 106, 0.4);
+        }
+
+        .cta-button:hover {
+            background: #c0955a;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(212, 168, 106, 0.6);
+        }
+
+        /* Card Sections */
+        .card-section {
+            height: 100vh;
+            scroll-snap-align: start;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+        }
+
+        .card-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .card-image img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.5s;
+        }
+
+        .card-image img:hover {
+            transform: scale(1.03);
+        }
+
+        .card-details {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .card-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .card-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .card-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .card-features li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-features i {
+            color: #d4a86a;
+            margin-right: 0.5rem;
+        }
+
+        .card-price {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #d4a86a;
+            margin-bottom: 1.5rem;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-btn i {
+            margin-right: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .whatsapp-btn:hover {
+            background: #20bd5a;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            scroll-snap-align: start;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #d4a86a;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .footer-links li {
+            margin: 0 1rem;
+        }
+
+        .footer-links a {
+            color: #e8c4a4;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #d4a86a;
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            color: #aaa;
+        }
+
+        /* Fixed WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25D366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #20bd5a;
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .card-section {
+                flex-direction: column;
+                padding: 5rem 5%;
+                height: auto;
+                min-height: 100vh;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            nav ul {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .card-title {
+                font-size: 2rem;
+            }
+
+            .card-description {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">Wed<span>mee</span></a>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#cards">Cards</a></li>
+                <li><a href="#footer">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Beautiful Wedding Cards for Your Special Day</h1>
+        <p>Discover our exquisite collection of wedding cards, designed to make your celebration unforgettable</p>
+        <button class="cta-button" onclick="scrollToCards()">Explore Designs</button>
+    </section>
+
+    <!-- Card Sections -->
+    <section id="cards" class="card-section">
+        <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Elegant Floral Wedding Card">
+        </div>
+        <div class="card-details">
+            <h2 class="card-title">Elegant Floral Design</h2>
+            <p class="card-description">A beautifully crafted wedding card with intricate floral patterns, perfect for a romantic and classic wedding celebration.</p>
+            <ul class="card-features">
+                <li><i class="fas fa-check"></i> Premium quality paper</li>
+                <li><i class="fas fa-check"></i> Gold foil detailing</li>
+                <li><i class="fas fa-check"></i> Custom text options</li>
+                <li><i class="fas fa-check"></i> Matching envelope included</li>
+            </ul>
+            <p class="card-price">Starting at ₹45 per card</p>
+            <a href="https://wa.me/919680393349?text=Hi%20Wedmee!%20I'm%20interested%20in%20the%20Elegant%20Floral%20Design%20wedding%20card.%20Can%20you%20share%20more%20details?" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> Inquire on WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <section class="card-section">
+        <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1351&q=80" alt="Modern Minimalist Wedding Card">
+        </div>
+        <div class="card-details">
+            <h2 class="card-title">Modern Minimalist</h2>
+            <p class="card-description">Clean lines and simple elegance define this contemporary wedding card, ideal for couples who appreciate modern aesthetics.</p>
+            <ul class="card-features">
+                <li><i class="fas fa-check"></i> Sleek matte finish</li>
+                <li><i class="fas fa-check"></i> Crisp typography</li>
+                <li><i class="fas fa-check"></i> Multiple color options</li>
+                <li><i class="fas fa-check"></i> Eco-friendly materials</li>
+            </ul>
+            <p class="card-price">Starting at ₹35 per card</p>
+            <a href="https://wa.me/919680393349?text=Hi%20Wedmee!%20I'm%20interested%20in%20the%20Modern%20Minimalist%20wedding%20card.%20Can%20you%20share%20more%20details?" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> Inquire on WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <section class="card-section">
+        <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Royal Gold Embossed Card">
+        </div>
+        <div class="card-details">
+            <h2 class="card-title">Royal Gold Embossed</h2>
+            <p class="card-description">Make a grand statement with this luxurious wedding card featuring gold embossing and premium textures for a regal touch.</p>
+            <ul class="card-features">
+                <li><i class="fas fa-check"></i> Premium embossed details</li>
+                <li><i class="fas fa-check"></i> Luxurious paper quality</li>
+                <li><i class="fas fa-check"></i> Custom monogram option</li>
+                <li><i class="fas fa-check"></i> Silk ribbon accent</li>
+            </ul>
+            <p class="card-price">Starting at ₹65 per card</p>
+            <a href="https://wa.me/919680393349?text=Hi%20Wedmee!%20I'm%20interested%20in%20the%20Royal%20Gold%20Embossed%20wedding%20card.%20Can%20you%20share%20more%20details?" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> Inquire on WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <section class="card-section">
+        <div class="card-image">
+            <!-- Using the provided digital card link -->
+            <img src="https://khowalrachit.github.io/engagement/preview.jpg" alt="Digital Engagement Card" onerror="this.src='https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'">
+        </div>
+        <div class="card-details">
+            <h2 class="card-title">Digital Engagement Card</h2>
+            <p class="card-description">A modern digital card perfect for sharing your engagement news with friends and family across the globe instantly.</p>
+            <ul class="card-features">
+                <li><i class="fas fa-check"></i> Fully customizable design</li>
+                <li><i class="fas fa-check"></i> Easy sharing via link</li>
+                <li><i class="fas fa-check"></i> RSVP tracking</li>
+                <li><i class="fas fa-check"></i> Photo gallery integration</li>
+            </ul>
+            <p class="card-price">Starting at ₹299 per card</p>
+            <a href="https://khowalrachit.github.io/engagement/" class="whatsapp-btn" target="_blank" style="background: #d4a86a; margin-right: 10px;">
+                <i class="fas fa-eye"></i> View Demo
+            </a>
+            <a href="https://wa.me/919680393349?text=Hi%20Wedmee!%20I'm%20interested%20in%20your%20Digital%20Engagement%20Card.%20Can%20you%20share%20more%20details?" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> Customize Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer-content">
+            <div class="footer-logo">Wedmee</div>
+            <p>Creating beautiful memories with our exquisite wedding cards</p>
+            <ul class="footer-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#cards">Cards</a></li>
+                <li><a href="https://wa.me/919680393349" target="_blank">Contact</a></li>
+            </ul>
+            <p>Email: info@wedmee.com | Phone: +91 9680393349</p>
+            <p class="copyright">© 2023 Wedmee. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Fixed WhatsApp Button -->
+    <a href="https://wa.me/919680393349?text=Hi%20Wedmee!%20I%20saw%20your%20website%20and%20I'm%20interested%20in%20your%20wedding%20cards." class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId !== '#cards') {
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Scroll to the first card section
+                    document.querySelectorAll('.card-section')[0].scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Function to scroll to cards section
+        function scrollToCards() {
+            document.querySelectorAll('.card-section')[0].scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
