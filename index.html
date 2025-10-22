@@ -33,7 +33,7 @@
             top: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
-            padding: 1.2rem 2rem;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -42,17 +42,14 @@
             transition: all 0.3s ease;
         }
 
-        .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #d4a86a;
-            text-decoration: none;
-            letter-spacing: 1px;
+        .logo-container {
+            display: flex;
+            align-items: center;
         }
 
-        .logo span {
-            color: #b8915d;
+        .logo-img {
+            height: 50px;
+            width: auto;
         }
 
         nav ul {
@@ -334,8 +331,8 @@
                 padding: 1rem;
             }
 
-            .logo {
-                font-size: 1.8rem;
+            .logo-img {
+                height: 40px;
             }
 
             nav ul {
@@ -411,7 +408,9 @@
 <body>
     <!-- Header -->
     <header>
-        <a href="#" class="logo">Wed<span>mee</span></a>
+        <div class="logo-container">
+            <img src="wedmee.png" alt="Wedmee" class="logo-img">
+        </div>
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
@@ -487,7 +486,7 @@
     <!-- Footer -->
     <footer id="footer">
         <div class="footer-content">
-            <div class="footer-logo">Wedmee</div>
+            <img src="wedmee.png" alt="Wedmee" class="logo-img" style="height: 60px; margin-bottom: 1.5rem;">
             <p>Crafting beautiful memories with our exquisite wedding cards</p>
             <ul class="footer-links">
                 <li><a href="#home">Home</a></li>
